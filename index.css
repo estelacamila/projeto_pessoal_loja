@@ -1,0 +1,829 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600&display=swap');
+
+
+
+.carrinho-sidebar {
+    background: white;
+    box-shadow: none;
+    width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    /* move 100% para fora da tela à direita */
+    transition: transform 0.4s ease;
+    padding: 20px;
+    z-index: 999999999;
+    pointer-events: none;
+}
+
+.carrinho-sidebar.open {
+    transform: translateX(0);
+    /* volta para posição original */
+    pointer-events: auto;
+}
+
+:root {
+    --cor-principal: #5D4037;
+    --cor-secundaria: #D4AF37;
+    --cor-neutra-clara: #F8F8F8;
+    --cor-neutra-escura: #333;
+    --cor-acento: #8B4513;
+
+    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-texto: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-neutra-clara);
+    color: var(--cor-neutra-escura);
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    /* Rolagem suave para âncoras */
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-principal);
+    margin-top: 0;
+}
+
+/* Header */
+header {
+    background-color: var(--cor-principal);
+    color: white;
+    padding: 1rem 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.logo {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 30px;
+    /* Aumentei o espaço entre os itens do menu */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--cor-secundaria);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Estilos do Ícone do Carrinho */
+.cart-icon-container {
+    position: relative;
+    cursor: pointer;
+    margin-left: 60px;
+    /* Mais espaço para o ícone do carrinho */
+}
+
+.cart-icon {
+    font-size: 2.5rem;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: var(--cor-secundaria);
+}
+
+.cart-count {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 5px 9px;
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    transform: translate(0, 0);
+    min-width: 25px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Seção Hero */
+.hero-section {
+    background: url('https://via.placeholder.com/1600x700/D4AF37/FFFFFF?text=Sua+Imagem+de+Elegância') no-repeat center center/cover;
+    /* Aumentei a altura da imagem */
+    height: 700px;
+    /* Altura generosa para o banner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding: 0 20px;
+    /* Padding para evitar que o texto encoste nas bordas em telas pequenas */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    /* Mais padding interno */
+    max-width: 900px;
+    /* Aumentei a largura máxima do conteúdo do hero */
+}
+
+.hero-content h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 5rem;
+    /* Título maior e impactante */
+    margin-bottom: 25px;
+    /* Mais espaço abaixo do título */
+    line-height: 1.1;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-family: var(--fonte-texto);
+    font-size: 1.6rem;
+    /* Texto descritivo grande */
+    margin-bottom: 50px;
+    /* Mais espaço abaixo do parágrafo */
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.btn-cta {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
+    padding: 20px 45px;
+    /* Botão ainda maior */
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    /* Texto do botão maior */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-cta:hover {
+    background-color: #C19E30;
+    /* Cor manual para darken */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Seção de Produtos */
+.produtos-container {
+    max-width: 1400px;
+    /* Aumentei a largura máxima para mais produtos por linha */
+    margin: 100px auto;
+    /* Mais espaço acima e abaixo da seção */
+    background-color: white;
+    padding: 50px;
+    /* Mais padding interno */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    /* Aumentei o espaçamento entre os cards */
+}
+
+.section-title {
+    font-size: 3.8rem;
+    /* Título da seção maior */
+    color: var(--cor-principal);
+    margin-bottom: 70px;
+    /* Mais espaço para o título */
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    /* Sublinhado um pouco maior */
+    height: 3px;
+    background-color: var(--cor-secundaria);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.produto-card {
+    width: 300px;
+    /* Cards maiores e mais espaçados */
+    padding: 25px;
+    /* Mais padding interno */
+    border: 1px solid #eee;
+    border-radius: 10px;
+    /* Bordas mais arredondadas */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    /* Sombra mais sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.produto-card:hover {
+    transform: translateY(-10px);
+    /* Efeito de elevação maior */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    /* Sombra mais intensa no hover */
+}
+
+.produto-card img {
+    max-width: 100%;
+    height: 400px;
+    /* Imagens mais altas */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    /* Mais espaço abaixo da imagem */
+}
+
+.produto-card h3 {
+    font-size: 1.5rem;
+    /* Nome do produto maior */
+    color: var(--cor-neutra-escura);
+    margin: 15px 0 10px;
+    font-weight: 500;
+}
+
+.produto-card .preco {
+    font-size: 1.4rem;
+    /* Preço maior */
+    color: var(--cor-acento);
+    font-weight: 600;
+    margin-bottom: 25px;
+    /* Mais espaço para o botão */
+}
+
+.produto-card button.adicionar-carrinho {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
+    border: none;
+    padding: 15px 30px;
+    /* Botão maior */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.produto-card button.adicionar-carrinho:hover {
+    background-color: #C19E30;
+    transform: translateY(-2px);
+}
+
+/* Estilos para o Carrinho como Barra Lateral */
+.carrinho-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 400px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.2);
+    transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+    /* Mais padding */
+}
+
+.carrinho-sidebar.open {
+    right: 0;
+}
+
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 25px;
+    /* Mais padding */
+    margin-bottom: 25px;
+}
+
+.carrinho-header h2 {
+    font-size: 2.2rem;
+    /* Título do carrinho maior */
+    color: var(--cor-principal);
+    margin: 0;
+}
+
+.close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    /* Botão de fechar maior */
+    cursor: pointer;
+    color: var(--cor-principal);
+    transition: color 0.3s ease;
+}
+
+.close-cart-btn:hover {
+    color: #e74c3c;
+}
+
+#itens-carrinho {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin-bottom: 25px;
+    /* Mais espaço */
+}
+
+.carrinho-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.carrinho-item:last-child {
+    border-bottom: none;
+}
+
+.carrinho-item-info {
+    flex-grow: 1;
+}
+
+.carrinho-item-info h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    /* Nome do item maior */
+    color: var(--cor-neutra-escura);
+}
+
+.carrinho-item-info p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    color: #777;
+}
+
+.quantidade-controle {
+    display: flex;
+    align-items: center;
+    /* Mais espaço */
+}
+
+.diminuir-quantidade, .aumentar-quantidade {
+    background-color: var(--cor-neutra-clara);
+    border: 1px solid #ddd;
+    width: 35px;
+    /* Botões de controle maiores */
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.quantidade-controle button:hover {
+    background-color: #e8e8e8;
+    border-color: #ccc;
+}
+
+.quantidade-controle span {
+    padding: 0 12px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--cor-principal);
+}
+
+
+.remover-item:hover {
+    background-color: #c0392b;
+}
+
+.carrinho-total {
+    text-align: right;
+    margin-top: 30px;
+    /* Mais espaço */
+    border-top: 2px solid var(--cor-secundaria);
+    padding-top: 25px;
+    /* Mais padding */
+}
+
+.carrinho-total h3 {
+    font-size: 2rem;
+    /* Tamanho do total */
+    color: var(--cor-principal);
+}
+
+#total-carrinho {
+    font-weight: bold;
+    color: var(--cor-acento);
+    font-size: 2rem;
+}
+
+button.finalizar-compra {
+    display: block;
+    width: 100%;
+    background-color: #25D366;
+    /* Cor do WhatsApp para o botão */
+    color: white;
+    border: none;
+    padding: 20px;
+    /* Botão de finalizar maior */
+    border-radius: 8px;
+    /* Mais arredondado */
+    cursor: pointer;
+    font-size: 1.4rem;
+    /* Texto do botão maior */
+    font-weight: 600;
+    margin-top: 40px;
+    /* Mais espaço */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    /* Para centralizar ícone e texto */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Espaço entre ícone e texto */
+}
+
+button.finalizar-compra:hover {
+    background-color: #1DA851;
+    /* Tom mais escuro do WhatsApp */
+    transform: translateY(-2px);
+}
+
+button.finalizar-compra i {
+    font-size: 1.5rem;
+    /* Tamanho do ícone do WhatsApp */
+}
+
+#carrinho-vazio-msg {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 40px;
+    font-size: 1.2rem;
+}
+
+/* Overlay */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Ainda mais escuro */
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Footer */
+footer {
+    background-color: var(--cor-neutra-escura);
+    color: white;
+    text-align: center;
+    padding: 2.5rem 0;
+    /* Mais padding */
+    margin-top: 100px;
+    /* Mais espaço acima */
+    font-size: 1rem;
+    border-top: 5px solid var(--cor-secundaria);
+}
+
+footer p {
+    margin: 8px 0;
+    /* Mais espaço entre as linhas do rodapé */
+    font-weight: 300;
+}
+
+footer i.fas.fa-heart {
+    color: #e74c3c;
+    margin-left: 5px;
+}
+
+
+/* Responsividade aprimorada */
+@media (max-width: 1200px) {
+    .produtos-container {
+        max-width: 1000px;
+        /* Ajuste para telas menores */
+        gap: 30px;
+    }
+
+    .produto-card {
+        width: calc(33.33% - 40px);
+        /* 3 colunas, ajustando o gap */
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        padding: 1rem 40px;
+    }
+
+    .logo {
+        font-size: 2.2rem;
+    }
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+
+    .cart-icon {
+        font-size: 2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .btn-cta {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .produtos-container {
+        padding: 30px;
+        margin: 80px auto;
+        gap: 25px;
+    }
+
+    .section-title {
+        font-size: 3rem;
+        margin-bottom: 50px;
+    }
+
+    .produto-card {
+        width: calc(50% - 35px);
+        /* 2 colunas */
+    }
+}
+
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem 15px;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    .cart-icon-container {
+        margin-left: unset;
+        margin-top: 15px;
+    }
+
+    .hero-section {
+        height: 450px;
+    }
+
+    .hero-content h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .btn-cta {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .produtos-container {
+        padding: 20px;
+        margin: 60px auto;
+        gap: 20px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .produto-card {
+        width: calc(100% - 30px);
+    }
+
+    .carrinho-sidebar {
+        width: 100%;
+        right: -100%;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    .carrinho-sidebar.open {
+        right: 0;
+    }
+
+    .carrinho-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .close-cart-btn {
+        font-size: 2rem;
+    }
+
+    button.finalizar-compra {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    #total-carrinho {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        padding: 1.5rem 0;
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .hero-section {
+        height: 350px;
+    }
+
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .produto-card img {
+        height: 300px;
+    }
+}
+
+.carrinho-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    /* ajuste conforme seu design */
+    height: 100vh;
+    /* ocupa toda a altura da tela */
+    background: white;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Conteúdo do carrinho - faz a área dos itens scrollável */
+#itens-carrinho {
+    flex: 1;
+    /* ocupa todo espaço disponível */
+    overflow-y: auto;
+    margin-bottom: 15px;
+    /* para não colar no botão */
+}
+
+/* Botão fixado na parte inferior da sidebar */
+.finalizar-compra {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+.remover-item {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    /* Botão maior */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    margin-left: 15px;
+}

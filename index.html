@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chic Boutique - Elegância Online</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Chic Boutique</h1>
+        <nav>
+            <ul>
+                <li><a href="#produtos">Coleção</a></li>
+                <li><a href="#">Novidades</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-bag cart-icon" id="cart-toggle"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero-section" class="hero-section">
+            <div class="hero-content">
+                <h2>Elegância que Veste sua Alma</h2>
+                <p>Descubra peças exclusivas para um estilo sofisticado e atemporal.</p>
+                <a href="#produtos" class="btn-cta">Ver Coleção</a>
+            </div>
+        </section>
+
+        <section id="produtos" class="produtos-container">
+            <h2 class="section-title">Nossa Coleção Exclusiva</h2>
+            <div class="produto-card" data-id="1" data-nome="Vestido de Seda" data-preco="350.00">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTnshxxjfIhrbl1GWZOL-c0UDHPgz5JP1maQ&s" alt="Vestido de Seda">
+                <h3>Vestido de Seda Elegante</h3>
+                <p class="preco">R$ 350,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+
+            <div class="produto-card" data-id="2" data-nome="Blazer Alfaiataria" data-preco="280.00">
+                <img src="https://userenovee.com/cdn/shop/files/S83ccc39b4f214952bb62c6e1a5059f64p.jpg?v=1682744470" alt="Blazer Alfaiataria">
+                <h3>Blazer Alfaiataria Premium</h3>
+                <p class="preco">R$ 280,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+
+            <div class="produto-card" data-id="3" data-nome="Bolsa de Couro" data-preco="450.00">
+                <img src="https://images.tcdn.com.br/img/img_prod/464874/bolsa_feminina_de_couro_legitimo_orange_12871_1_f74385e5aba91974fca7e5714ba5fbaf_20220222092952.jpg" alt="Bolsa de Couro">
+                <h3>Bolsa de Couro Genuíno</h3>
+                <p class="preco">R$ 450,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+
+            <div class="produto-card" data-id="4" data-nome="Brinco de Pérolas" data-preco="120.00">
+                <img src="https://images.tcdn.com.br/img/img_prod/1022170/brinco_pingo_de_perola_organico_bijuteria_feminino_2970_1_fb29328f4801f83d6219476f3ab06207.jpg" alt="Brinco de Pérolas">
+                <h3>Brinco de Pérolas Clássico</h3>
+                <p class="preco">R$ 120,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+            <div class="produto-card" data-id="5" data-nome="Scarpin de Salto Fino" data-preco="220.00">
+                <img src="https://shoemix.fbitsstatic.net/img/p/sapato-scarpin-vizzano-cinza-1185-702-7286-77687/305522-1.jpg?w=670&h=670&v=no-change&qs=ignore" alt="Scarpin de Salto Fino">
+                <h3>Scarpin de Salto Fino</h3>
+                <p class="preco">R$ 220,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+             <div class="produto-card" data-id="6" data-nome="Cachecol de Cashmere" data-preco="180.00">
+                <img src="https://m.media-amazon.com/images/I/51KtcO7eo0L._AC_SY1000_.jpg" alt="Cachecol de Cashmere">
+                <h3>Cachecol de Cashmere Luxo</h3>
+                <p class="preco">R$ 180,00</p>
+                <button class="adicionar-carrinho">Adicionar à Sacola</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="carrinho-sidebar" class="carrinho-sidebar">
+        <div class="carrinho-header">
+            <h2>Sua Sacola de Compras</h2>
+            <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+        </div>
+        <div id="itens-carrinho">
+            <p id="carrinho-vazio-msg">Sua sacola está vazia. Adicione itens para começar!</p>
+        </div>
+        <div class="carrinho-total">
+            <h3>Total: R$ <span id="total-carrinho">0.00</span></h3>
+        </div>
+        <button class="finalizar-compra">Finalizar Pedido</button>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+
+    <footer>
+        <p>&copy; 2025 Chic Boutique. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <i class="fas fa-heart"></i> por Você</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
